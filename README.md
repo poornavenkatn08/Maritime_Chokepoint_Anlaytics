@@ -6,7 +6,7 @@
 
 When carriers suspended Red Sea routing in December 2023, traffic through Bab el-Mandeb and Suez fell **43.4%** relative to fourteen unaffected chokepoints. Traffic did not disappear — the Cape of Good Hope absorbed it.
 
-[![Dashboard](https://img.shields.io/badge/Tableau-Live%20Dashboard-E97627?logo=tableau&logoColor=white)](«https://public.tableau.com/app/profile/poorna.venkat.neelakantam/viz/Choke_Point/RedSeaDiversion»)
+[![Dashboard](https://img.shields.io/badge/Tableau-Live%20Dashboard-E97627?logo=tableau&logoColor=white)](https://public.tableau.com/app/profile/poorna.venkat.neelakantam/viz/Choke_Point/RedSeaDiversion)
 [![Findings](https://img.shields.io/badge/Read-Findings-blue)](FINDINGS.md)
 [![Limitations](https://img.shields.io/badge/Read-Limitations-orange)](docs/LIMITATIONS.md)
 
