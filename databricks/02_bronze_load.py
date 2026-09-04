@@ -1,14 +1,3 @@
-# Databricks notebook source
-# MAGIC %md
-# MAGIC # Phase 2 - Bronze load
-# MAGIC Uploads land in a Unity Catalog volume; this notebook verifies them against
-# MAGIC the extract manifest BEFORE the pipeline runs. If counts disagree, stop.
-
-# COMMAND ----------
-# Set this ONCE and use the identical value in 03, 04 and 05.
-# Do NOT auto-detect with current_catalog(): running the notebook twice under
-# different defaults creates two parallel schemas and you end up uploading to
-# one while the code reads the other.
 CATALOG, SCHEMA, VOLUME = "workspace", "portwatch", "raw"
 
 spark.sql(f"CREATE SCHEMA IF NOT EXISTS {CATALOG}.{SCHEMA}")
@@ -23,12 +12,6 @@ for other in [c.catalog for c in spark.sql("SHOW CATALOGS").collect() if c.catal
     if hit:
         print(f"  NOTE: {other}.{SCHEMA} also exists. Drop it so you don't split your data:")
         print(f"        spark.sql(\"DROP SCHEMA IF EXISTS {other}.{SCHEMA} CASCADE\")")
-
-# COMMAND ----------
-# MAGIC %md
-# MAGIC ## Verify against the extract manifest
-
-# COMMAND ----------
 
 import json, os
 
@@ -61,12 +44,6 @@ for name in EXPECTED:
         print(f"?    {name:16s} volume={actual:>9,}  (no manifest entry)")
 
 assert ok, "row counts disagree with the manifest - re-run the extract before continuing"
-
-# COMMAND ----------
-# MAGIC %md
-# MAGIC ## Sanity checks that must hold before modelling
-
-# COMMAND ----------
 
 df = spark.read.parquet(f"{VOL}/chokepoints.parquet")
 print("chokepoints:", df.select("portname").distinct().count(), "(expect 28)")
