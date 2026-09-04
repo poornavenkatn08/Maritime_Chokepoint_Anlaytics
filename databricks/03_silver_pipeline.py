@@ -1,24 +1,3 @@
-"""
-03_silver_pipeline.py
----------------------
-Phase 3: Lakeflow Declarative Pipeline (silver layer).
-
-Import this file as the source for a Lakeflow pipeline in Databricks.
-Do NOT run it as a normal notebook - the @dlt decorators only execute inside a
-pipeline context.
-
-Free Edition allows ONE active pipeline per type, so everything lives here.
-
-Pipeline settings:
-    Catalog: <same as 02>  Schema: portwatch
-    Serverless: yes        Channel: current
-    Source: this file
-
-The expectations below are the analogue of the dbt tests in the Credit Risk
-project: 19 checks across four tables. `expect_or_drop` quarantines bad rows,
-`expect` records a violation without dropping, `expect_or_fail` halts the run.
-"""
-
 from __future__ import annotations
 
 import dlt
