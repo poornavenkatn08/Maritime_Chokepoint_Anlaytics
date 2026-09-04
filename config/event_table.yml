@@ -1,0 +1,162 @@
+# =============================================================================
+# PRE-REGISTERED EVENT TABLE
+# =============================================================================
+# This file defines the treatment dates, treated units, and control units for
+# every geopolitical event window BEFORE any estimate is produced.
+#
+# RULE: commit this file, and do not edit it after running 07_event_study.py.
+# The git history of this file is the evidence that windows were not tuned to
+# results. If a window genuinely must change, add a NEW entry with a rationale
+# rather than editing an existing one, and report both.
+#
+# Control selection rule (applied before seeing any outcome):
+#   - exclude chokepoints on the affected routing corridor
+#   - exclude chokepoints with their own concurrent geopolitical shock
+#     (Kerch and Bosporus: Russia/Ukraine; Taiwan Strait; Strait of Hormuz)
+#   - exclude chokepoints averaging < 5 transits/day (Bering, Magellan)
+#   - exclude Gibraltar and Dover: Asia-Europe cargo routed via the Cape
+#     changes their traffic, so they are outcomes, not controls
+# =============================================================================
+
+meta:
+  outcome: n_total          # daily vessel transit calls
+  transform: log1p          # effects are proportional
+  panel_freq: W             # weekly means; use --daily for the daily panel
+
+events:
+
+  red_sea_carrier_suspension:
+    hypothesis: >
+      Major carrier suspensions of Red Sea routing reduced transit calls at
+      Bab el-Mandeb and Suez relative to unaffected chokepoints, with a
+      corresponding increase at the Cape of Good Hope.
+    event_date: "2023-12-15"
+    date_rationale: >
+      Week in which several major container lines publicly suspended Red Sea
+      transits. Chosen as the carrier DECISION point rather than the date of any
+      individual incident, because the outcome measured is routing behaviour.
+    treated:
+      - Bab el-Mandeb Strait
+      - Suez Canal
+    controls:
+      - Panama Canal
+      - Malacca Strait
+      - Korea Strait
+      - Bohai Strait
+      - Luzon Strait
+      - Tsugaru Strait
+      - Yucatan Channel
+      - Windward Passage
+      - Oresund Strait
+      - Mona Passage
+      - Makassar Strait
+      - Mindoro Strait
+      - Balabac Strait
+      - Ombai Strait
+    pre_days: 365
+    post_days: 365
+
+    # Correlation clusters for randomization inference. Chokepoints on one route
+    # move together, so a placebo treated set must also come from one route.
+    # Drawing unrelated chokepoints instead produced a 22% false-positive rate
+    # against a nominal 5% in the port-panel placebo test.
+    corridors:
+      Bab el-Mandeb Strait: asia_europe_suez
+      Suez Canal: asia_europe_suez
+      Cape of Good Hope: asia_europe_cape
+      Gibraltar Strait: asia_europe_cape
+      Malacca Strait: se_asia
+      Makassar Strait: se_asia
+      Mindoro Strait: se_asia
+      Balabac Strait: se_asia
+      Ombai Strait: se_asia
+      Sunda Strait: se_asia
+      Lombok Strait: se_asia
+      Korea Strait: ne_asia
+      Bohai Strait: ne_asia
+      Luzon Strait: ne_asia
+      Tsugaru Strait: ne_asia
+      Taiwan Strait: ne_asia
+      Panama Canal: americas
+      Yucatan Channel: americas
+      Windward Passage: americas
+      Mona Passage: americas
+      Magellan Strait: americas
+      Oresund Strait: n_europe
+      Dover Strait: n_europe
+      Bosporus Strait: black_sea
+      Kerch Strait: black_sea
+      Strait of Hormuz: gulf
+
+  cape_substitution:
+    hypothesis: >
+      The Cape of Good Hope absorbed diverted Asia-Europe traffic over the same
+      window. Direction of effect is opposite in sign to the Red Sea entry;
+      this is the substitution side of the same routing decision, not an
+      independent test.
+    event_date: "2023-12-15"
+    date_rationale: "Same decision point as red_sea_carrier_suspension."
+    treated:
+      - Cape of Good Hope
+    controls:
+      - Panama Canal
+      - Malacca Strait
+      - Korea Strait
+      - Bohai Strait
+      - Luzon Strait
+      - Tsugaru Strait
+      - Yucatan Channel
+      - Windward Passage
+      - Oresund Strait
+      - Mona Passage
+      - Makassar Strait
+      - Mindoro Strait
+      - Balabac Strait
+      - Ombai Strait
+    pre_days: 365
+    post_days: 365
+
+    # Correlation clusters for randomization inference. Chokepoints on one route
+    # move together, so a placebo treated set must also come from one route.
+    # Drawing unrelated chokepoints instead produced a 22% false-positive rate
+    # against a nominal 5% in the port-panel placebo test.
+    corridors:
+      Bab el-Mandeb Strait: asia_europe_suez
+      Suez Canal: asia_europe_suez
+      Cape of Good Hope: asia_europe_cape
+      Gibraltar Strait: asia_europe_cape
+      Malacca Strait: se_asia
+      Makassar Strait: se_asia
+      Mindoro Strait: se_asia
+      Balabac Strait: se_asia
+      Ombai Strait: se_asia
+      Sunda Strait: se_asia
+      Lombok Strait: se_asia
+      Korea Strait: ne_asia
+      Bohai Strait: ne_asia
+      Luzon Strait: ne_asia
+      Tsugaru Strait: ne_asia
+      Taiwan Strait: ne_asia
+      Panama Canal: americas
+      Yucatan Channel: americas
+      Windward Passage: americas
+      Mona Passage: americas
+      Magellan Strait: americas
+      Oresund Strait: n_europe
+      Dover Strait: n_europe
+      Bosporus Strait: black_sea
+      Kerch Strait: black_sea
+      Strait of Hormuz: gulf
+
+# -----------------------------------------------------------------------------
+# CANDIDATE WINDOWS - not yet activated
+# -----------------------------------------------------------------------------
+# Add below only with a documented date rationale, and move into `events:` in a
+# separate commit made BEFORE the corresponding run.
+#
+#   kerch_strait_2022        - Russia/Ukraine. Treated: Kerch. Note the pre-period
+#                              trend is -0.99 log/yr, so a level-shift design is
+#                              not appropriate without a trend specification.
+#   panama_drought_2023      - water-level restrictions; climate not geopolitics,
+#                              but a useful contrast case for the same estimator.
+# -----------------------------------------------------------------------------

@@ -1,0 +1,10 @@
+{
+  "frozen_at_utc": "2026-08-31T00:47:12+00:00",
+  "note": "pre-registration for Red Sea windows",
+  "hashes": {
+    "config/event_table.yml": "45f3c8ca8ff9ca8f760f7f005ff0e4678dd8913d237e11e2b5c637f83ae0afc4",
+    "analysis/eventstudy/estimator.py": "a49f06527e5932a11f10ead1792798c4399a02a43a9705c0cf0746050701aee7",
+    "analysis/07_event_study.py": "83fd21e79e6271425ce7ed0224a8eb27c0e9e614c157893d59e1fd07ed3bd9e6"
+  },
+  "history": []
+}

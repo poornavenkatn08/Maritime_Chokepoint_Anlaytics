@@ -1,0 +1,21 @@
+{
+  "window": {
+    "pre_days": 90,
+    "post_days_rule": "max(14, duration + 7)",
+    "freq": "D",
+    "median_post_days": 14.0
+  },
+  "n_events": 45,
+  "median_effect_pct": -0.2408511014324155,
+  "share_negative": 0.5333333333333333,
+  "mode": "placebo",
+  "share_significant_at_05": 0.2222222222222222,
+  "median_pretrend_differential": -0.01070164566868049,
+  "share_pretrend_pass": 0.8666666666666667,
+  "by_type": {
+    "EQ": -5.16,
+    "FL": -1.26,
+    "OT": -8.83,
+    "TC": 0.53
+  }
+}

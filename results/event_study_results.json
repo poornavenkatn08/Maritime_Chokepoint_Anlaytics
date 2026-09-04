@@ -1,0 +1,210 @@
+{
+  "provenance": {
+    "run_at_utc": "2026-08-31T00:47:13+00:00",
+    "frozen": true,
+    "frozen_at_utc": "2026-08-31T00:47:12+00:00",
+    "freeze_note": "pre-registration for Red Sea windows",
+    "hashes": {
+      "config/event_table.yml": "45f3c8ca8ff9ca8f760f7f005ff0e4678dd8913d237e11e2b5c637f83ae0afc4",
+      "analysis/eventstudy/estimator.py": "a49f06527e5932a11f10ead1792798c4399a02a43a9705c0cf0746050701aee7",
+      "analysis/07_event_study.py": "83fd21e79e6271425ce7ed0224a8eb27c0e9e614c157893d59e1fd07ed3bd9e6"
+    },
+    "spec_changed_since_freeze": [],
+    "n_prior_freezes": 0,
+    "git": {
+      "commit": "01e6e027d8b2c0b91f6a26b9cabe34c9b108ab16",
+      "working_tree_clean": false,
+      "event_table_last_committed": ""
+    }
+  },
+  "freq": "W",
+  "results": [
+    {
+      "event": "red_sea_carrier_suspension",
+      "spec": {
+        "hypothesis": "Major carrier suspensions of Red Sea routing reduced transit calls at Bab el-Mandeb and Suez relative to unaffected chokepoints, with a corresponding increase at the Cape of Good Hope.\n",
+        "event_date": "2023-12-15",
+        "date_rationale": "Week in which several major container lines publicly suspended Red Sea transits. Chosen as the carrier DECISION point rather than the date of any individual incident, because the outcome measured is routing behaviour.\n",
+        "treated": [
+          "Bab el-Mandeb Strait",
+          "Suez Canal"
+        ],
+        "controls": [
+          "Panama Canal",
+          "Malacca Strait",
+          "Korea Strait",
+          "Bohai Strait",
+          "Luzon Strait",
+          "Tsugaru Strait",
+          "Yucatan Channel",
+          "Windward Passage",
+          "Oresund Strait",
+          "Mona Passage",
+          "Makassar Strait",
+          "Mindoro Strait",
+          "Balabac Strait",
+          "Ombai Strait"
+        ],
+        "pre_days": 365,
+        "post_days": 365,
+        "corridors": {
+          "Bab el-Mandeb Strait": "asia_europe_suez",
+          "Suez Canal": "asia_europe_suez",
+          "Cape of Good Hope": "asia_europe_cape",
+          "Gibraltar Strait": "asia_europe_cape",
+          "Malacca Strait": "se_asia",
+          "Makassar Strait": "se_asia",
+          "Mindoro Strait": "se_asia",
+          "Balabac Strait": "se_asia",
+          "Ombai Strait": "se_asia",
+          "Sunda Strait": "se_asia",
+          "Lombok Strait": "se_asia",
+          "Korea Strait": "ne_asia",
+          "Bohai Strait": "ne_asia",
+          "Luzon Strait": "ne_asia",
+          "Tsugaru Strait": "ne_asia",
+          "Taiwan Strait": "ne_asia",
+          "Panama Canal": "americas",
+          "Yucatan Channel": "americas",
+          "Windward Passage": "americas",
+          "Mona Passage": "americas",
+          "Magellan Strait": "americas",
+          "Oresund Strait": "n_europe",
+          "Dover Strait": "n_europe",
+          "Bosporus Strait": "black_sea",
+          "Kerch Strait": "black_sea",
+          "Strait of Hormuz": "gulf"
+        }
+      },
+      "headline_spec": "with_unit_trends",
+      "parallel_trends": {
+        "treated_slope_per_yr": 0.06985929876048344,
+        "control_slope_per_yr": -0.03373169733644865,
+        "differential": 0.10359099609693209,
+        "p_value": 0.7649381339906134,
+        "verdict": "WEAK - not statistically distinguishable, but differential is large"
+      },
+      "estimates": {
+        "twfe": {
+          "beta": -0.6790441004957253,
+          "pct_effect": -49.289850116969916,
+          "ci_low_pct": -55.35013183804608,
+          "ci_high_pct": -42.36851171694329,
+          "se_cluster": 0.08123719713426963,
+          "p_randomization": 0.0,
+          "n_obs": 1664,
+          "n_treated": 2,
+          "n_control": 14
+        },
+        "with_unit_trends": {
+          "beta": -0.5690267155682521,
+          "pct_effect": -43.39238762520983,
+          "ci_low_pct": -51.69480674206306,
+          "ci_high_pct": -33.82696542357934,
+          "se_cluster": 0.09690831834062073,
+          "p_randomization": 0.0,
+          "n_obs": 1664,
+          "n_treated": 2,
+          "n_control": 14
+        }
+      },
+      "lead_check": {
+        "mean_lead_pct": -4.016617171301018,
+        "max_abs_lead_pct": 12.720629808897133
+      }
+    },
+    {
+      "event": "cape_substitution",
+      "spec": {
+        "hypothesis": "The Cape of Good Hope absorbed diverted Asia-Europe traffic over the same window. Direction of effect is opposite in sign to the Red Sea entry; this is the substitution side of the same routing decision, not an independent test.\n",
+        "event_date": "2023-12-15",
+        "date_rationale": "Same decision point as red_sea_carrier_suspension.",
+        "treated": [
+          "Cape of Good Hope"
+        ],
+        "controls": [
+          "Panama Canal",
+          "Malacca Strait",
+          "Korea Strait",
+          "Bohai Strait",
+          "Luzon Strait",
+          "Tsugaru Strait",
+          "Yucatan Channel",
+          "Windward Passage",
+          "Oresund Strait",
+          "Mona Passage",
+          "Makassar Strait",
+          "Mindoro Strait",
+          "Balabac Strait",
+          "Ombai Strait"
+        ],
+        "pre_days": 365,
+        "post_days": 365,
+        "corridors": {
+          "Bab el-Mandeb Strait": "asia_europe_suez",
+          "Suez Canal": "asia_europe_suez",
+          "Cape of Good Hope": "asia_europe_cape",
+          "Gibraltar Strait": "asia_europe_cape",
+          "Malacca Strait": "se_asia",
+          "Makassar Strait": "se_asia",
+          "Mindoro Strait": "se_asia",
+          "Balabac Strait": "se_asia",
+          "Ombai Strait": "se_asia",
+          "Sunda Strait": "se_asia",
+          "Lombok Strait": "se_asia",
+          "Korea Strait": "ne_asia",
+          "Bohai Strait": "ne_asia",
+          "Luzon Strait": "ne_asia",
+          "Tsugaru Strait": "ne_asia",
+          "Taiwan Strait": "ne_asia",
+          "Panama Canal": "americas",
+          "Yucatan Channel": "americas",
+          "Windward Passage": "americas",
+          "Mona Passage": "americas",
+          "Magellan Strait": "americas",
+          "Oresund Strait": "n_europe",
+          "Dover Strait": "n_europe",
+          "Bosporus Strait": "black_sea",
+          "Kerch Strait": "black_sea",
+          "Strait of Hormuz": "gulf"
+        }
+      },
+      "headline_spec": "with_unit_trends",
+      "parallel_trends": {
+        "treated_slope_per_yr": 0.26902196493747904,
+        "control_slope_per_yr": -0.03373169733644757,
+        "differential": 0.3027536622739266,
+        "p_value": 0.53679400149591,
+        "verdict": "WEAK - not statistically distinguishable, but differential is large"
+      },
+      "estimates": {
+        "twfe": {
+          "beta": 0.5694722928208914,
+          "pct_effect": 76.73341703817754,
+          "ci_low_pct": 70.76183445916146,
+          "ci_high_pct": 83.42600750881768,
+          "se_cluster": 0.020092291189633942,
+          "p_randomization": 0.0,
+          "n_obs": 1560,
+          "n_treated": 1,
+          "n_control": 14
+        },
+        "with_unit_trends": {
+          "beta": 0.3311887566374082,
+          "pct_effect": 39.26226342664545,
+          "ci_low_pct": 31.14645323828322,
+          "ci_high_pct": 47.71085749455884,
+          "se_cluster": 0.0330090481112326,
+          "p_randomization": 0.0,
+          "n_obs": 1560,
+          "n_treated": 1,
+          "n_control": 14
+        }
+      },
+      "lead_check": {
+        "mean_lead_pct": 5.508972736442361,
+        "max_abs_lead_pct": 34.18111440145481
+      }
+    }
+  ]
+}
